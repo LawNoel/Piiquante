@@ -16,7 +16,7 @@ const app = express();
 
 dotenv.config();
 
-app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy("cross-origin"));
 
 // Connextion à MongoDB
 mongoose
