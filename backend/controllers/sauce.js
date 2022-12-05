@@ -170,5 +170,4 @@ exports.likeSauce = (req, res, next) => {
       }
     })
     .catch((error) => res.status(400).json({ error }));
-  // res.status(400).json({ error: "code raté" });
 };
