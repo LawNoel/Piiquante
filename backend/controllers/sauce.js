@@ -2,7 +2,8 @@ const Sauce = require("../models/sauce");
 const fs = require("fs");
 
 exports.createSauce = (req, res, next) => {
-  const sauceObject = req.body.sauce;
+  const sauceObject = JSON.parse(req.body.sauce);
+  console.log(sauceObject.name);
   const sauce = new Sauce({
     ...sauceObject,
     userId: req.auth.userId,

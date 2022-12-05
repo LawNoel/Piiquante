@@ -23,6 +23,7 @@ exports.signup = (req, res, next) => {
 
 // Contrôleur pour la connexion à un compte utilisateur
 exports.login = (req, res, next) => {
+  console.log(req.body);
   // Pour comparer le nom d'utilisateur, ici l'adresse mail
   User.findOne({ email: req.body.email })
     .then((user) => {

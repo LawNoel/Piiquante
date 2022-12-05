@@ -8,12 +8,24 @@ const auth = require("../middleware/auth");
 
 const multer = require("../middleware/multer-config");
 
-// const validator = require("../middleware/validator");
+const sauceValidator = require("../middleware/sauce-validator");
 
 router.get("/:id", auth, sauceCtrl.getOneSauce);
 router.get("/", auth, sauceCtrl.getAllSauce);
-router.post("/", auth, multer, sauceCtrl.createSauce);
-router.put("/:id", auth, multer, sauceCtrl.modifySauce);
+router.post(
+  "/",
+  auth,
+  multer,
+  sauceValidator.validSauce,
+  sauceCtrl.createSauce
+);
+router.put(
+  "/:id",
+  auth,
+  multer,
+  sauceValidator.validSauce,
+  sauceCtrl.modifySauce
+);
 router.delete("/:id", auth, sauceCtrl.deleteSauce);
 router.post("/:id/like", auth, sauceCtrl.likeSauce);
 
