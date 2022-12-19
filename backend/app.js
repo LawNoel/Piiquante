@@ -36,7 +36,7 @@ const limiter = rateLimit({
 });
 
 // Apply the rate limiting middleware to all requests
-app.use("/api/auth/login", limiter);
+app.use("/api/auth", limiter);
 
 // Accès au corps de la requête
 app.use(express.json());

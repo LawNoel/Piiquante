@@ -23,7 +23,7 @@ router.put(
   "/:id",
   auth,
   multer,
-  sauceValidator.validSauce,
+  sauceValidator.validUpdateSauce,
   sauceCtrl.modifySauce
 );
 router.delete("/:id", auth, sauceCtrl.deleteSauce);

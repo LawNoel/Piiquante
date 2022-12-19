@@ -17,3 +17,22 @@ exports.validSauce = async (req, res, next) => {
     res.status(400).json(err);
   }
 };
+
+const sauceUpdateSchema = Joi.object({
+  userId: Joi.string(),
+  name: Joi.string(),
+  manufacturer: Joi.string(),
+  description: Joi.string(),
+  mainPepper: Joi.string(),
+  heat: Joi.number(),
+}).unknown();
+
+exports.validUpdateSauce = async (req, res, next) => {
+  try {
+    await sauceUpdateSchema.validateAsync(req.body);
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+};
