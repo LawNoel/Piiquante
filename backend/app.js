@@ -14,6 +14,8 @@ const path = require("path");
 
 const app = express();
 
+const rateLimit = require("express-rate-limit");
+
 dotenv.config();
 
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -26,6 +28,15 @@ mongoose
   })
   .then(() => console.log("Connexion à MongoDB réussie"))
   .catch((e) => console.log("Connexion à MongoDB échouée", e));
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 3,
+  message: "tentatives de connextion dépassées, veuillez réessayer plus tard !",
+});
+
+// Apply the rate limiting middleware to all requests
+app.use("/api/auth/login", limiter);
 
 // Accès au corps de la requête
 app.use(express.json());

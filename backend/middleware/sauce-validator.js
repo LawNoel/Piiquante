@@ -11,7 +11,7 @@ const sauceSchema = Joi.object({
 
 exports.validSauce = async (req, res, next) => {
   try {
-    await sauceSchema.validateAsync(req.body);
+    await sauceSchema.validateAsync(JSON.parse(req.body.sauce));
     next();
   } catch (err) {
     res.status(400).json(err);
