@@ -1,5 +1,7 @@
+// Import de Joi
 const Joi = require("joi");
 
+// Création des données de validation pour la sauce
 const sauceSchema = Joi.object({
   userId: Joi.string().required(),
   name: Joi.string().required(),

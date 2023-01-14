@@ -1,7 +1,5 @@
 const express = require("express");
 
-const router = express.Router();
-
 const sauceCtrl = require("../controllers/sauce");
 
 const auth = require("../middleware/auth");
@@ -9,6 +7,8 @@ const auth = require("../middleware/auth");
 const multer = require("../middleware/multer-config");
 
 const sauceValidator = require("../middleware/sauce-validator");
+
+const router = express.Router();
 
 router.get("/:id", auth, sauceCtrl.getOneSauce);
 router.get("/", auth, sauceCtrl.getAllSauce);

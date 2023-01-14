@@ -1,10 +1,12 @@
+// Import de bcrypt pour le cryptage des données
 const bcrypt = require("bcrypt");
+
+// Import de jsonwebtoken pour la création d'un token et de le vérifier '
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
 
-const jwt = require("jsonwebtoken");
-
-// Controleur pour la création d'un compte utilisateur
+// Création d'un compte utilisateur
 exports.signup = (req, res, next) => {
   bcrypt
     .hash(req.body.password, 10)
@@ -14,7 +16,7 @@ exports.signup = (req, res, next) => {
         password: hash, //Cryptage du mot de passe
       });
       user
-        .save() //Pour sauvegarder l'utilisateur dans la base de données
+        .save() //On enregistre l'utilisateur dans la base de données
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
         .catch((error) => res.status(400).json({ error }));
     })
@@ -23,7 +25,6 @@ exports.signup = (req, res, next) => {
 
 // Contrôleur pour la connexion à un compte utilisateur
 exports.login = (req, res, next) => {
-  console.log(req.body);
   // Pour comparer le nom d'utilisateur, ici l'adresse mail
   User.findOne({ email: req.body.email })
     .then((user) => {

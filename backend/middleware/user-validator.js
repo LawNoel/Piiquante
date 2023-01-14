@@ -1,5 +1,7 @@
+// Import de JOI pour de la data validation
 const Joi = require("joi");
 
+// Création des données de validation de l'utilisateur
 const authSchema = Joi.object({
   email: Joi.string().email().required(),
 
