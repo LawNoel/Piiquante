@@ -8,7 +8,7 @@ const sauceSchema = Joi.object({
   manufacturer: Joi.string().required(),
   description: Joi.string().required(),
   mainPepper: Joi.string().required(),
-  heat: Joi.number().required(),
+  heat: Joi.number().min(0).max(10).required(),
 });
 
 exports.validSauce = async (req, res, next) => {
@@ -21,12 +21,12 @@ exports.validSauce = async (req, res, next) => {
 };
 
 const sauceUpdateSchema = Joi.object({
-  userId: Joi.string(),
-  name: Joi.string(),
-  manufacturer: Joi.string(),
-  description: Joi.string(),
-  mainPepper: Joi.string(),
-  heat: Joi.number(),
+  userId: Joi.string().required(),
+  name: Joi.string().required(),
+  manufacturer: Joi.string().required(),
+  description: Joi.string().required(),
+  mainPepper: Joi.string().required(),
+  heat: Joi.number().min(0).max(10).required(),
 }).unknown();
 
 exports.validUpdateSauce = async (req, res, next) => {
